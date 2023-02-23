@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useState } from 'react';
+import ParentComponent from './ParentComponent';
+
+
+const UserStorage = createContext()
+
+// console.log(UserContext)
+
 
 function App() {
+  const [state, setstate] = useState('hello')
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <UserStorage.Provider value={state} >
+        <h1>{state}</h1>
+        <ParentComponent />
+      </UserStorage.Provider>
+
+
     </div>
   );
 }
+
+export { UserStorage };
 
 export default App;
